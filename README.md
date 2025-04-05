@@ -1,7 +1,6 @@
-# Dualsense_Edge_Modules_Callibration
-# Proof of concept script for calibrating Dualsense Edge Modules
-
 # Introduction
+This is Proof of concept script for calibrating Dualsense Edge Modules center point.
+
 I’m excited to share that I’ve successfully figured out how to calibrate the DualSense Edge modules. This project took me a couple of months of research, experimentation, and a few sacrificial controllers and modules along the way. Hopefully, this information can help others and give new life to drifting or malfunctioning Edge modules.
 
 # This script will center the stick module center point

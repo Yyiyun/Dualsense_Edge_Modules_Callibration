@@ -12,7 +12,7 @@ def open_device():
     
     try:
         device.open(VENDOR_ID, PRODUCT_ID_EDGE)
-        print("[DEBUG] Device opened successfully (DualSense Edge).")
+        print("Device opened successfully (DualSense Edge).")
         return device
     except Exception as e:
         print(f"[ERROR] Could not open device: {e}")
@@ -32,7 +32,7 @@ def SendFeatureReport(device, data, length):
         if res == length:
             # Convert bytes to list of integers
             formatted_data = list(out_data) + [0] * (64 - len(out_data))
-            print(f"[DEBUG] Sent feature report successfully: {formatted_data}")
+            # print(f"[DEBUG] Sent feature report successfully: {formatted_data}")
             return True
         else:
             print(f"[ERROR] Failed to send full feature report. Sent: {res}/{length}")
@@ -45,7 +45,7 @@ def GetFeatureReport(device, report_id, length):
     try:
         report = device.get_feature_report(report_id, length)
         if len(report) > 0:
-            print(f"[DEBUG] Received feature report (len={len(report)}): {report}")
+            # print(f"[DEBUG] Received feature report (len={len(report)}): {report}")
             return bytearray(report)
         else:
             print("[ERROR] Received empty report.")
@@ -71,16 +71,43 @@ if __name__ == "__main__":
         SendFeatureReport(device, [130, 2, 1, 1], 4)
         time.sleep(0.2)
         GetFeatureReport(device, 131, 64)
-        
-        print("\n\nSaving changes to the devices (Edge Modules)")
 
         time.sleep(0.2)
-        SendFeatureReport(device, [128, 21, 1, 1], 4)
+        SendFeatureReport(device, [128, 21, 5, 1], 4)
         time.sleep(0.2)
         GetFeatureReport(device, 129, 64)
 
-        print("\n\nSaving changes to the devices (Edge Modules) complete!")
-        print("Disconnect the device and reconnect it to check the changes.")
+        print("\nSaving changes to the devices (Edge Modules)")
+
+        payload = [0, 11]
+        
+        print("\nUnlocking left module...")
+        time.sleep(0.2)
+        SendFeatureReport(device, [128, 21, 6, 0] + payload, len(payload) + 4)
+        time.sleep(0.2)
+        SendFeatureReport(device, [128, 21, 5, 0], 4)
+        time.sleep(0.2)
+        get_unlock_status_left = GetFeatureReport(device, 129, 64)
+        if get_unlock_status_left[5] == 132:
+            print("\nLeft module unlocked successfully.")
+            print("\nSaving changes to the left edge modules complete!")
+        else:
+            print("\nLeft module unlock failed.")
+
+        print("\nUnlocking right module...")    
+        time.sleep(0.2)
+        SendFeatureReport(device, [128, 21, 6, 1] + payload, len(payload) + 4)
+        time.sleep(0.2)
+        SendFeatureReport(device, [128, 21, 5, 1], 4)
+        time.sleep(0.2)
+        get_unlock_status_right = GetFeatureReport(device, 129, 64)
+        time.sleep(0.2)
+        if get_unlock_status_right[5] == 132:
+            print("\nRight module unlocked successfully.")
+            print("\nSaving changes to the right edge mdule complete!")
+        else:
+            print("\nRight module unlock failed.")
+
 
     except Exception as e:
         print("[ERROR] Could not complete the operation:", e)
@@ -90,4 +117,4 @@ if __name__ == "__main__":
             device.close()
         except:
             pass
-        print("[DEBUG] Device closed.")
+        # print("[DEBUG] Device closed.")

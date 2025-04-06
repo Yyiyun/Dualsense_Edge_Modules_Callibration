@@ -90,7 +90,7 @@ if __name__ == "__main__":
         get_unlock_status_left = GetFeatureReport(device, 129, 64)
         if get_unlock_status_left[5] == 132:
             print("\nLeft module unlocked successfully.")
-            print("\nSaving changes to the left edge modules complete!")
+            print("\nSaving changes to the left edge module complete!")
         else:
             print("\nLeft module unlock failed.")
 
@@ -104,7 +104,7 @@ if __name__ == "__main__":
         time.sleep(0.2)
         if get_unlock_status_right[5] == 132:
             print("\nRight module unlocked successfully.")
-            print("\nSaving changes to the right edge mdule complete!")
+            print("\nSaving changes to the right edge module complete!")
         else:
             print("\nRight module unlock failed.")
 

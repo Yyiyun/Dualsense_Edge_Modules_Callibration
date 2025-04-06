@@ -38,8 +38,8 @@ https://dualshock-tools.github.io/
 
 # Saving the Calibration
 After running the calibration process, you need to send a HID feature report to save the calibration:
-1. 128, 21, 6, 1, 0, 11 (To unlock module in the left controller slot)
-2. 128, 21, 6, 1, 1, 11 (To unlock module in the right controller slot)
+1. 128, 21, 6, 0, 0, 11 (To unlock module in the left controller slot)
+2. 128, 21, 6, 1, 0, 11 (To unlock module in the right controller slot)
 
 21 corresponds to the Edge modules test device ID.
 

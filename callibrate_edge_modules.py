@@ -63,6 +63,10 @@ if __name__ == "__main__":
             print("[ERROR] No device found. Exiting.")
             exit(1)
 
+        print("\nFor now run the script twice to unlock the modules.")
+        print("\nIf that wont work, try disconnecting and reconecting the controller.")
+        print("\nAnd run the script again.")
+
         time.sleep(0.2)
         SendFeatureReport(device, [130, 1, 1, 1], 4)
         time.sleep(0.2)
@@ -72,18 +76,11 @@ if __name__ == "__main__":
         time.sleep(0.2)
         GetFeatureReport(device, 131, 64)
 
-        time.sleep(0.2)
-        SendFeatureReport(device, [128, 21, 5, 1], 4)
-        time.sleep(0.2)
-        GetFeatureReport(device, 129, 64)
-
         print("\nSaving changes to the devices (Edge Modules)")
-
-        payload = [0, 11]
         
         print("\nUnlocking left module...")
         time.sleep(0.2)
-        SendFeatureReport(device, [128, 21, 6, 0] + payload, len(payload) + 4)
+        SendFeatureReport(device, [128, 21, 6, 0, 11], 5)
         time.sleep(0.2)
         SendFeatureReport(device, [128, 21, 5, 0], 4)
         time.sleep(0.2)
@@ -96,7 +93,7 @@ if __name__ == "__main__":
 
         print("\nUnlocking right module...")    
         time.sleep(0.2)
-        SendFeatureReport(device, [128, 21, 6, 1] + payload, len(payload) + 4)
+        SendFeatureReport(device, [128, 21, 6, 1, 11], 5)
         time.sleep(0.2)
         SendFeatureReport(device, [128, 21, 5, 1], 4)
         time.sleep(0.2)

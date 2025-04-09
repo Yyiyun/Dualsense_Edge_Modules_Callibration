@@ -21,9 +21,12 @@ Soldering Required: You need to apply 1.8V to the top test point in the module b
 I have a short video demonstration showing the calibration in action:
 [![TikTok Video Thumbnail](thumbnail.png)](https://www.tiktok.com/@somerandombadassstuff/video/7489795659009215766)
 
-# How to run the script:
+# How to run the script (Windows):
 1. Solder the wire like in the photo
 2. Download and install python
+3. Create a folder on disk C like Edge_Module_Utility
+4. Extract the downloaded code to C:\Edge_Module_Utility
+5. Open terminal and write "cd C:\Edge_Module_Utility"
 3. Create new python virtual enviorment in your current location:
 python -m venv venv
 
@@ -32,6 +35,8 @@ python -m venv venv
 
 5. Install requirements:
 pip install -r requirements.txt
+
+6. Connect the controller to pc using USB cable
 
 6. Run the script:
 python EdgeModuleUtility.py
@@ -51,6 +56,7 @@ https://dualshock-tools.github.io/
 # Saving the Calibration
 After unlocking the modules, every change in calibration is saved without
 using any aditional commands.
+You can unlock modules one by one or both at a time. Only modules with wire will be unlocked.
 For safty reasons after you done with calibration lock the modules and remove the wire.
 
 # Credits & Donations

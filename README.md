@@ -1,33 +1,45 @@
 # Introduction
-This is Proof of concept script for calibrating Dualsense Edge Modules center point.
+This is Proof of concept script for unlocking Dualsense Edge Modules.
 
-I’m excited to share that I’ve successfully figured out how to calibrate the DualSense Edge modules. This project took me a couple of months of research, experimentation, and a few sacrificial controllers and modules along the way. Hopefully, this information can help others and give new life to drifting or malfunctioning Edge modules.
+This script is provided as-is without any warranty.
+Use at your own risk. The author is not responsible
+for any damage or unintended side effects caused
+by using this script.
 
-# This script will center the stick module center point
-you can edit it to just save the calibration if you want by commenting out 
-calibration and just use save part
+I’m excited to share that I’ve successfully figured out how to unlock and calibrate the DualSense Edge Modules. This project took me a couple of months of research, experimentation, and a few sacrificial controllers and modules along the way. Hopefully, this information can help others and give new life to drifting or malfunctioning Edge modules.
+
+# What it can do:
+![Photo](term_menu.png)
+
+# Photo: Here is an example of the single cable you need to solder:
+![Photo](wire.png)
+
+The calibration can be done using the DualSense Edge controller itself. However, it’s not purely software-based because you must wire a single small cable inside the Edge module:
+Soldering Required: You need to apply 1.8V to the top test point in the module by soldering one small cable.
 
 # Video Proof
 I have a short video demonstration showing the calibration in action:
 [![TikTok Video Thumbnail](thumbnail.png)](https://www.tiktok.com/@somerandombadassstuff/video/7489795659009215766)
 
-The calibration can be done using the DualSense Edge controller itself. However, it’s not purely software-based because you must wire a single small cable inside the Edge module:
+# How to run the script:
+1. Solder the wire like in the photo
+2. Download and install python
+3. Create new python virtual enviorment in your current location:
+python -m venv venv
 
-Soldering Required: You need to apply 1.8V to the top test point in the module by soldering one small cable.
+4. Activate virtual enviorment:
+.\venv\Scripts\activate
 
-Photo: Here is an example of the single cable you need to solder:
-![Photo](dualsense-edge-module-wire.webp)
+5. Install requirements:
+pip install -r requirements.txt
 
-Make sure you have hidapi installed with
-pip install hidapi
-
-Than just run the script:
-python callibrate_edge_modules.py
+6. Run the script:
+python EdgeModuleUtility.py
 
 # Software Part
-No special unlocking (like NVS unlocking) is needed. You can calibrate the DualSense Edge the usual way using any of the following methods:
+No special unlocking (like NVS unlocking) is needed. You can calibrate center and range of the DualSense Edge modules the usual way using any of the following methods:
 
-DriftGuard (Steam): DriftGuard Gamepad Maintenance Tool (Steam)
+DriftGuard (Steam): DriftGuard Gamepad Maintenance Tool
 https://store.steampowered.com/app/3174550/DriftGuard_Gamepad_Maintenance_Tool/
 
 DriftGuard (Android): DriftGuard on Google Play
@@ -37,20 +49,12 @@ DualShock-Tools: Calibration website (Edge support will be added later if the cr
 https://dualshock-tools.github.io/
 
 # Saving the Calibration
-After running the calibration process, you need to send a HID feature report to save the calibration:
-1. 128, 21, 6, 0, 11 (To unlock module in the left controller slot)
-2. 128, 21, 6, 1, 11 (To unlock module in the right controller slot)
-
-21 corresponds to the Edge modules test device ID.
-
-You can read the calibration from the modules using:
-128, 21, 18, 0  // Left module
-128, 21, 18, 1  // Right module
-
-To test whether the calibration was successful, simply disconnect and reconnect your controller.
+After unlocking the modules, every change in calibration is saved without
+using any aditional commands.
+For safty reasons after you done with calibration lock the modules and remove the wire.
 
 # Credits & Donations
-I’m sharing this for the benefit of the community. If you find it helpful, please credit my work. If you’d like to support future developments (or just buy me a coffee), you can donate here:
+I’m sharing this for the benefit of the community. If you find it helpful, please credit my work. If you’d like to support future developments (or just buy me a coffee), you can buy one of my apps or donate here:
 
 https://www.paypal.com/donate/?business=CV5LLN6DKMGYC&no_recurring=0&currency_code=USD
 

@@ -41,6 +41,13 @@ pip install -r requirements.txt
 6. Run the script:
 python EdgeModuleUtility.py
 
+# Precompiled app
+As i saw that some people have troubles using the script i also compiled a simple app.
+Just download DualSense_Edge_Module_Utility_Precomiled_Exe.zip
+Unzip the archive and run the app.
+
+![Photo](app.png)
+
 # Software Part
 No special unlocking (like NVS unlocking) is needed. You can calibrate center and range of the DualSense Edge modules the usual way using any of the following methods:
 
